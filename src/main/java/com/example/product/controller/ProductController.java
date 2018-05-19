@@ -16,14 +16,14 @@ public class ProductController {
     private ProductService service ;
 
 
-     @GetMapping("/products/{productName}")
+     @GetMapping("/products/product/{productName}")
      public ResponseEntity getProductsByName(@PathVariable("productName") String productName ) throws Exception
      {
          List <Product> products = service.getProductsByName(productName);
          return new ResponseEntity(products,HttpStatus.OK);
      }
 
-    @GetMapping("/products/{serviceId}")
+    @GetMapping("/products/service/{serviceId}")
     public ResponseEntity getProductsByService(@PathVariable("serviceId") String serviceId ) throws Exception
     {
         List <Product> products = service.getProductsByService(serviceId);

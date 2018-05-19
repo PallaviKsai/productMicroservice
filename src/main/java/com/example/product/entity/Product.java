@@ -1,6 +1,6 @@
 package com.example.product.entity;
 
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,12 +8,11 @@ import javax.persistence.GenerationType;
 import java.io.Serializable;
 
 @Entity
-public class Product implements Serializable {
+public class Product  {
 
-    public Product(String serviceId, String productName) {
-        this.serviceId = serviceId;
-        this.productName = productName;
-    }
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
 
     public String getServiceId() {
         return serviceId;
@@ -31,20 +30,18 @@ public class Product implements Serializable {
         this.productName = productName;
     }
 
-    public long getUid() {
-        return uid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUid(long uid) {
-        this.uid = uid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     protected String serviceId;
 
     protected String productName;
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long uid;
+
 
 }

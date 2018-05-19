@@ -19,7 +19,7 @@ public class ProductService {
 
     public Product addProduct(Product product){
         Product p = repository.save(product);
-        logger.info(" added new product:"+p.getUid());
+        logger.info(" added new product:"+p.getId());
         return p;
     }
 
