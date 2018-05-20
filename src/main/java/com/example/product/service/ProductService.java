@@ -3,10 +3,13 @@ package com.example.product.service;
 
 import com.example.product.entity.Product;
 import com.example.product.repository.ProductRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +33,25 @@ public class ProductService {
         return repository.findByServiceId(service);
     }
 
+    public Iterable<Product> getAllProducts(){
+        return  repository.findAll();
+    }
 
+    public Long deleteProduct(long id){
+        Optional<Product>  product = repository.findById(id);
+        if (product.isPresent())
+        {
+        repository.delete(product.get());
+        return  id;}
+        else{
+            return -1L;
+        }
+    }
+
+    public Optional<Product> findById(Long id) {
+        return repository.findById(id);
+
+    }
 
 
 }

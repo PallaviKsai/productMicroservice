@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -36,4 +37,17 @@ public class ProductController {
          return  new ResponseEntity(service.addProduct(product),HttpStatus.OK);
     }
 
+
+    @DeleteMapping("/product/{productId}")
+    public ResponseEntity delete(@PathVariable("productId") Long id){
+        if (service.deleteProduct(id)== -1)
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            else
+            return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @GetMapping("/products")
+    public ResponseEntity getAllProducts(){
+         return new ResponseEntity( service.getAllProducts(),HttpStatus.OK);
+    }
 }
